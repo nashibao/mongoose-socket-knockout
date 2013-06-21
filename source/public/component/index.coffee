@@ -1,12 +1,10 @@
-Model = require('./mongoose-socket-client').Model
 require('knockout')
-
 oo = ko.observable
 oa = ko.observableArray
-
 $ = require('jquery')
+Model = require('./mongoose-socket-client').Model
 
-@app = {}
+app = {}
 
 socket = Model.create_socket('test', io)
 
@@ -32,3 +30,5 @@ app.vm = new ApplicationViewModel
 
 $(document).ready =>
   ko.applyBindings app.vm
+
+module.exports = app

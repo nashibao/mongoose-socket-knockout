@@ -17,6 +17,8 @@ class ApplicationViewModel
     @content = oo("")
 
   create: ()=>
+    console.log 'わっしょーい!!'
+    console.log @content()
     @messages_model.create {'content': @content()}
     @content("")
 

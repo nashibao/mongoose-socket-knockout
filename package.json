@@ -15,6 +15,7 @@
     "grunt-contrib-concat": "*",
     "grunt-contrib-uglify": "*",
     "grunt-notify": "*",
+    "grunt-shell": "*",
     "growl": "*",
     "chai": "*"
   },

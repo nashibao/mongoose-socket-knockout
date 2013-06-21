@@ -14,6 +14,11 @@ module.exports = function(grunt) {
           src: ['**/*.coffee'],
           dest: 'build/',
           ext: '.js'
+        },
+        componentCoffeeCompile: {
+          files: {
+            'source/public/component/index.js': 'source/public/component/index.coffee'
+          }
         }
     },
     compass: {
@@ -53,7 +58,12 @@ module.exports = function(grunt) {
     },
     watch: {
         files: ['source/**/*.coffee', 'source/**/*.jade', 'source/**/*.css', 'source/**/*.sass', 'tests/**/*'],
-        tasks: ['coffee', 'compass', 'copy', 'concat', 'uglify']
+        tasks: ['coffee', 'shell', 'compass', 'copy', 'concat', 'uglify']
+    },
+    shell: {
+      componentCompile: {
+        command: 'cd source/public/component;make;'
+      }
     }
   });
 
@@ -63,9 +73,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-notify');
 
   // Default task(s).
-  grunt.registerTask('default', ['coffee', 'compass', 'copy', 'concat', 'uglify']);
+  grunt.registerTask('default', ['coffee', 'shell', 'compass', 'copy', 'concat', 'uglify']);
 
 };

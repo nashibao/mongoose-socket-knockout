@@ -11,7 +11,7 @@ block content
   .container-narrow
     .masthead
       h1.muted 
-        a(href="http://github.com/nashibao/mongoose.socket", target="_blank") nashibao/mongoose-socket
+        a(href="http://github.com/nashibao/mongoose-socket", target="_blank") nashibao/mongoose-socket
     .jumbotron
       p.lead
         | mongoose -> html binding using socket.io and knockout.js
@@ -30,7 +30,7 @@ block content
     .row-fluid
       .span12
         h2 2. create {}
-        form.form-inline(data-bind="submit: create")
+        form.form-inline(data-bind="submit: create.bind($data)")
           input.span8(type="text", data-bind="value: content")
           button.btn(type="submit") create
     hr

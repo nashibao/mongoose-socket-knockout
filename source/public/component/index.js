@@ -28,6 +28,8 @@ ApplicationViewModel = (function() {
   }
 
   ApplicationViewModel.prototype.create = function() {
+    console.log('わっしょーい!!');
+    console.log(this.content());
     this.messages_model.create({
       'content': this.content()
     });

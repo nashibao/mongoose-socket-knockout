@@ -16,8 +16,12 @@ module.exports = function(grunt) {
           ext: '.js'
         },
         componentCoffeeCompile: {
+          options: {
+            bare: true
+          },
           files: {
-            'source/public/component/index.js': 'source/public/component/index.coffee'
+            'source/public/component/index.js': 'source/public/component/index.coffee',
+            'source/public/component/message/model.js': 'source/apps/message/model.coffee'
           }
         }
     },

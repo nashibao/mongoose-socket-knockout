@@ -7,6 +7,7 @@ block header
   script(src="/component/build/build.js")
   script
     var app = require('app');
+    _ = require('lodash');
 block content
   .container-narrow
     .masthead
@@ -18,32 +19,35 @@ block content
     hr
     .row-fluid
       .span12
+        div(data-bind="with: messages_model")
+          div(data-bind="with: last_err")
+            div(data-bind="foreach: _.values(errors)")
+              div.alert.alert-primary(data-bind="text: $data.message")
+    .row-fluid
+      .span12
         h2 1. find {}, update {}, remove
         div(data-bind="with: messages")
           div(data-bind="foreach: docs")
             div.muted(data-bind="text: _id")
             form.form-inline(data-bind="submit: $root.update.bind($data)")
-              input.span8(type="text", data-bind="value: content")
+              input.span8(type="text", data-bind="value: content, valueUpdate: 'afterkeydown'")
               button.btn(type="submit", data-bind="click: $root.update.bind($data)") update
               a.btn.btn-danger(data-bind="click: $root.remove.bind($data)") x
     hr
     .row-fluid
       .span12
         h2 2. create {}
-        form.form-inline(data-bind="submit: create.bind($data)")
+        form.form-inline(data-bind="submit: create.bind($data), valueUpdate: 'afterkeydown'")
           input.span8(type="text", data-bind="value: content")
           button.btn(type="submit") create
+    .row-fluid
+      .span12
+        div(data-bind="with: messages_model")
+          div(data-bind="visible: last_validate_err")
+            div.alert.alert-primary(data-bind="text: last_validate_err")
     hr
     .row-fluid
       .span12
         h2 3. count {}
         div(data-bind="with: count")
           div(data-bind="text: val")
-    hr
-    .row-fluid
-      .span12
-        h2 4. error {}
-        div(data-bind="with: messages_model")
-          div(data-bind="with: last_err")
-            div(data-bind="foreach: Object.values(errors)")
-              div.alert.alert-primary(data-bind="text: $data.message")

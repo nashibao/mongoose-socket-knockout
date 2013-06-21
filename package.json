@@ -28,6 +28,7 @@
     "connect": "*",
     "connect-redis": "*",
     "connect-flash": "*",
-    "validator": "*"
+    "validator": "*",
+    "mongoose-validator": "*"
   }
 }

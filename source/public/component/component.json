@@ -6,13 +6,17 @@
   "keywords": [],
   "dependencies": {
     "component/jquery": "*",
-    "rreverser/knockout": "*"
+    "rreverser/knockout": "*",
+    "bestiejs/lodash": "*",
+    "nashibao/validator": "*",
+    "nashibao/mongoose-validator": "*"
     },
   "development": {},
   "license": "MIT",
   "main": "index.js",
   "scripts": [
     "mongoose-socket-client/index.js",
+    "message/model.js",
     "index.js"
   ]
 }

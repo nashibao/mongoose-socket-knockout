@@ -1,0 +1,17 @@
+- function active(mine, tgs){
+-     var bl = false;
+-     for(var i=0;i<tgs.length;i++){
+-         if(mine==tgs[i]){
+-             bl = true;
+-             break;
+-         }
+-     }
+-     return bl?'active':'';
+- }
+doctype 5
+html
+  head
+    link(rel="stylesheet", href="/stylesheets/style.css")
+    block header
+  body
+    block content

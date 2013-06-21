@@ -1,0 +1,49 @@
+extends ../../views/layout
+block header
+  meta(name="viewport", content="width=device-width, initial-scale=1.0")
+  link(rel="stylesheet", href="/vendor/bootstrap/docs/assets/css/bootstrap-responsive.css")
+  link(rel="stylesheet", href="/vendor/bootswatch/cosmo/bootstrap.min.css")
+  script(src="/socket.io/socket.io.js")
+  script(src="/component/build/build.js")
+  script
+    require('app');
+block content
+  .container-narrow
+    .masthead
+      h1.muted 
+        a(href="http://github.com/nashibao/mongoose.socket", target="_blank") nashibao/mongoose-socket
+    .jumbotron
+      p.lead
+        | mongoose -> html binding using socket.io and knockout.js
+    hr
+    .row-fluid
+      .span12
+        h2 1. find {}, update {}, remove
+        div(data-bind="with: messages")
+          div(data-bind="foreach: docs")
+            div.muted(data-bind="text: _id")
+            form.form-inline(data-bind="submit: $root.update.bind($data)")
+              input.span8(type="text", data-bind="value: content")
+              button.btn(type="submit", data-bind="click: $root.update.bind($data)") update
+              a.btn.btn-danger(data-bind="click: $root.remove.bind($data)") x
+    hr
+    .row-fluid
+      .span12
+        h2 2. create {}
+        form.form-inline(data-bind="submit: create")
+          input.span8(type="text", data-bind="value: content")
+          button.btn(type="submit") create
+    hr
+    .row-fluid
+      .span12
+        h2 3. count {}
+        div(data-bind="with: count")
+          div(data-bind="text: val")
+    hr
+    .row-fluid
+      .span12
+        h2 4. error {}
+        div(data-bind="with: messages_model")
+          div(data-bind="with: last_err")
+            div(data-bind="foreach: Object.values(errors)")
+              div.alert.alert-primary(data-bind="text: $data.message")

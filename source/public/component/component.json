@@ -1,0 +1,18 @@
+{
+  "name": "app",
+  "repo": "nashibao/app",
+  "description": "app",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "component/jquery": "*",
+    "nashibao/mongoose-socket-client": "*",
+    "rreverser/knockout": "*"
+    },
+  "development": {},
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": [
+    "index.js"
+  ]
+}

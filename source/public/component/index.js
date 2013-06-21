@@ -3,7 +3,7 @@ var $, ApplicationViewModel, Model, oa, oo, socket,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
   _this = this;
 
-Model = require('mongoose-socket-client').Model;
+Model = require('./mongoose-socket-client').Model;
 
 require('knockout');
 

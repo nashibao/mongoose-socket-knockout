@@ -27,7 +27,6 @@
     "connect": "*",
     "connect-redis": "*",
     "connect-flash": "*",
-    "mongoose-socket-server": "git://github.com/nashibao/mongoose-socket-server.git",
     "validator": "*"
   }
 }

@@ -1,4 +1,4 @@
-Model = require('mongoose-socket-client').Model
+Model = require('./mongoose-socket-client').Model
 require('knockout')
 
 oo = ko.observable

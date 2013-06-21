@@ -6,13 +6,13 @@
   "keywords": [],
   "dependencies": {
     "component/jquery": "*",
-    "nashibao/mongoose-socket-client": "*",
     "rreverser/knockout": "*"
     },
   "development": {},
   "license": "MIT",
   "main": "index.js",
   "scripts": [
+    "mongoose-socket-client/index.js",
     "index.js"
   ]
 }

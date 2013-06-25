@@ -22,6 +22,23 @@ mongoose_socket = require('mongoose-socket-server')
 
 io = module.parent.exports.io
 
-api = new mongoose_socket("test", "message", Message, io)
+api = new mongoose_socket({
+  name_space: 'test'
+  collection_name: 'message'
+  model: Message
+})
 
-api.create()
+api.init(io)
+
+
+# rest api
+
+rest = require('mongoose-socket-server/rest')
+
+rest_api = new rest({
+  collection_name: 'message'
+  model: Message
+})
+
+rest_api.init(app)
+

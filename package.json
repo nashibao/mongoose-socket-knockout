@@ -29,6 +29,7 @@
     "connect-redis": "*",
     "connect-flash": "*",
     "validator": "*",
-    "mongoose-validator": "*"
+    "mongoose-validator": "*",
+    "sugar": "*"
   }
 }

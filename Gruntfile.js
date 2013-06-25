@@ -20,7 +20,8 @@ module.exports = function(grunt) {
             bare: true
           },
           files: {
-            'source/public/component/index.js': 'source/public/component/index.coffee',
+            'source/apps/mongoose-socket-server/index.js': 'source/apps/mongoose-socket-server/index.coffee',
+            'source/apps/mongoose-socket-server/rest.js': 'source/apps/mongoose-socket-server/rest.coffee',
             'source/public/component/message/model.js': 'source/apps/message/model.coffee'
           }
         }
@@ -65,6 +66,9 @@ module.exports = function(grunt) {
         tasks: ['coffee', 'shell', 'compass', 'copy', 'concat', 'uglify']
     },
     shell: {
+      componentMongooseCompile: {
+        command: 'cd source/public/component/mongoose-socket-client;make;'
+      },
       componentCompile: {
         command: 'cd source/public/component;make;'
       }

@@ -5,6 +5,7 @@
   "version": "0.0.1",
   "keywords": [],
   "dependencies": {
+    "ForbesLindesay/ajax": "*",
     "component/jquery": "*",
     "rreverser/knockout": "*",
     "bestiejs/lodash": "*",
@@ -15,6 +16,9 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": [
+    "mongoose-socket-client/adapter/socket.js",
+    "mongoose-socket-client/adapter/rest.js",
+    "mongoose-socket-client/adapter/index.js",
     "mongoose-socket-client/index.js",
     "message/model.js",
     "index.js"

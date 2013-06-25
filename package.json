@@ -28,8 +28,8 @@
     "connect": "*",
     "connect-redis": "*",
     "connect-flash": "*",
-    "validator": "*",
-    "mongoose-validator": "*",
+    "validator": "git://github.com/nashibao/validator.git",
+    "mongoose-validator": "git://github.com/nashibao/mongoose-validator.git",
     "sugar": "*"
   }
 }

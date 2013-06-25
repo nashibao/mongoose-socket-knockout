@@ -3,6 +3,7 @@ block header
   meta(name="viewport", content="width=device-width, initial-scale=1.0")
   link(rel="stylesheet", href="/vendor/bootstrap/docs/assets/css/bootstrap-responsive.css")
   link(rel="stylesheet", href="/vendor/bootswatch/cosmo/bootstrap.min.css")
+  link(rel="stylesheet", href="/vendor/animate.css/animate.min.css")
   script(src="/socket.io/socket.io.js")
   script(src="/component/build/build.js")
   script
@@ -22,17 +23,18 @@ block content
         div(data-bind="with: messages_model")
           div(data-bind="with: last_err")
             div(data-bind="foreach: _.values(errors)")
-              div.alert.alert-primary(data-bind="text: $data.message")
+              div.alert.alert-primary(data-bind="text: $data.type")
     .row-fluid
       .span12
         h2 1. find {}, update {}, remove
         div(data-bind="with: messages")
           div(data-bind="foreach: docs")
-            div.muted(data-bind="text: _id")
-            form.form-inline(data-bind="submit: $root.update.bind($data)")
-              input.span8(type="text", data-bind="value: content, valueUpdate: 'afterkeydown'")
-              button.btn(type="submit", data-bind="click: $root.update.bind($data)") update
-              a.btn.btn-danger(data-bind="click: $root.remove.bind($data)") x
+            div
+              div.muted(data-bind="text: _id")
+              form.form-inline(data-bind="submit: $root.update.bind($data)")
+                input.span8(type="text", data-bind="value: content, valueUpdate: 'afterkeydown'")
+                button.btn(type="submit", data-bind="click: $root.update.bind($data)") update
+                a.btn.btn-danger(data-bind="click: $root.remove.bind($data)") x
     hr
     .row-fluid
       .span12
@@ -40,6 +42,7 @@ block content
         form.form-inline(data-bind="submit: create.bind($data), valueUpdate: 'afterkeydown'")
           input.span8(type="text", data-bind="value: content")
           button.btn(type="submit") create
+        div.muted(data-bind="text: messages_model.model.content.help_text")
     .row-fluid
       .span12
         div(data-bind="with: messages_model")

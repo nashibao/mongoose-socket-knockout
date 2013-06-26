@@ -10,8 +10,9 @@
     "rreverser/knockout": "*",
     "bestiejs/lodash": "*",
     "nashibao/validator": "*",
-    "nashibao/mongoose-validator": "*"
-    },
+    "nashibao/mongoose-validator": "*",
+    "nashibao/simple-d3-charts": "*"
+  },
   "development": {},
   "license": "MIT",
   "main": "index.js",

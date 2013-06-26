@@ -4,11 +4,108 @@ block header
   link(rel="stylesheet", href="/vendor/bootstrap/docs/assets/css/bootstrap-responsive.css")
   link(rel="stylesheet", href="/vendor/bootswatch/cosmo/bootstrap.min.css")
   link(rel="stylesheet", href="/vendor/animate.css/animate.min.css")
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
   script(src="/socket.io/socket.io.js")
   script(src="/component/build/build.js")
   script
     var app = require('app');
     _ = require('lodash');
+  style
+    #pie-chart {
+      background-color: white;
+      /*border: 1px solid gray;*/
+      font: 10px sans-serif;
+      height: 300px;
+      text-shadow: none;
+      width: 300px;
+    }
+    #pie-chart .total{
+      font-size: 18px;
+      font-weight: bold;
+    }
+    #pie-chart .units{
+      fill: gray;
+      font-size: 12px;
+    }
+    #pie-chart .label{
+      fill: #CCC;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    #pie-chart .value{
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    #line-chart {
+      background-color: white;
+      /*border: 1px solid gray;*/
+      font: 10px sans-serif;
+      height: 300px;
+      text-shadow: none;
+      width: 600px;
+    }
+    #line-chart path {
+      stroke: steelblue;
+      stroke-width: 3;
+      fill: none;
+    }
+
+    #line-chart .axis {
+      shape-rendering: crispEdges;
+    }
+
+    #line-chart .x.axis line {
+      stroke: #eee;
+    }
+
+    #line-chart .x.axis .minor {
+      stroke-opacity: .5;
+    }
+
+    #line-chart .x.axis path {
+      display: none;
+    }
+
+    #line-chart .y.axis line, .y.axis path {
+      fill: none;
+      stroke: none;
+    }
+
+    #line-chart path.domain {
+      stroke: none;
+    }
+
+    #line-chart g.tick {
+      fill: lightgray;
+    }
+
+    #line-chart rect.line {
+      fill: #fff;
+      stroke: steelblue;
+      stroke-width: 3;
+    }
+
+    #line-chart circle.line {
+      fill: #fff;
+      stroke: steelblue;
+      stroke-width: 3;
+    }
+
+    #line-chart circle.line2 {
+      fill: #fff;
+    }
+
+    #line-chart rect.val {
+      fill: white;
+      opacity: 0.8;
+    }
+    #line-chart text.val {
+      fill: gray;
+      font-size: 12px;
+    }
+
 block content
   .container-narrow
     .masthead
@@ -19,13 +116,11 @@ block content
         | mongoose -> html binding using socket.io and knockout.js
     hr
     .row-fluid
-      .span12
+      .span6
         div(data-bind="with: messages_model")
           div(data-bind="with: last_err")
             div(data-bind="foreach: _.values(errors)")
               div.alert.alert-primary(data-bind="text: $data.type")
-    .row-fluid
-      .span12
         h2 1. find {}, update {}, remove
         div(data-bind="with: messages")
           div(data-bind="foreach: docs")
@@ -35,22 +130,28 @@ block content
                 input.span8(type="text", data-bind="value: content, valueUpdate: 'afterkeydown'")
                 button.btn(type="submit", data-bind="click: $root.update.bind($data)") update
                 a.btn.btn-danger(data-bind="click: $root.remove.bind($data)") x
-    hr
-    .row-fluid
-      .span12
+        hr
         h2 2. create {}
         form.form-inline(data-bind="submit: create.bind($data), valueUpdate: 'afterkeydown'")
           input.span8(type="text", data-bind="value: content")
           button.btn(type="submit") create
         div.muted(data-bind="text: messages_model.model.content.help_text")
-    .row-fluid
-      .span12
         div(data-bind="with: messages_model")
           div(data-bind="visible: last_validate_err")
             div.alert.alert-primary(data-bind="text: last_validate_err")
-    hr
-    .row-fluid
-      .span12
+        hr
         h2 3. count {}
         div(data-bind="with: count")
           div(data-bind="text: val")
+      .span6
+        h2 4. charts 
+        h4 Pie Chart
+        div#pie-chart 
+        h4 Bar Chart
+        div#bar-chart
+          div(data-bind="foreach: message_length")
+            .progress.animated.fadeIn
+              .bar(data-bind="style: {width: content()*10 + '%'}")
+        h4 Line Chart
+        div#line-chart
+

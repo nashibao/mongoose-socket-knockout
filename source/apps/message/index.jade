@@ -116,7 +116,7 @@ block content
         | mongoose -> html binding using socket.io and knockout.js
     hr
     .row-fluid
-      .span6
+      .span12
         div(data-bind="with: messages_model")
           div(data-bind="with: last_err")
             div(data-bind="foreach: _.values(errors)")
@@ -143,15 +143,15 @@ block content
         h2 3. count {}
         div(data-bind="with: count")
           div(data-bind="text: val")
-      .span6
+        hr
         h2 4. charts 
         h4 Pie Chart
         div#pie-chart 
-        h4 Bar Chart
-        div#bar-chart
-          div(data-bind="foreach: message_length")
-            .progress.animated.fadeIn
-              .bar(data-bind="style: {width: content()*10 + '%'}")
-        h4 Line Chart
-        div#line-chart
+        //- h4 Bar Chart
+        //- div#bar-chart
+        //-   div(data-bind="foreach: message_length")
+        //-     .progress.animated.fadeIn
+        //-       .bar(data-bind="style: {width: content()*10 + '%'}")
+        //- h4 Line Chart
+        //- div#line-chart
 

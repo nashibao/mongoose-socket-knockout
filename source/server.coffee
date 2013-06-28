@@ -1,5 +1,5 @@
 
-app_name = "test"
+app_name = "mongoosesocket"
 
 express = require "express"
 

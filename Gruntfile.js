@@ -67,10 +67,10 @@ module.exports = function(grunt) {
     },
     shell: {
       componentMongooseCompile: {
-        command: 'cd source/public/component/mongoose-socket-client;make;'
+        command: 'cd source/public/component/mongoose-socket-client;make;make install;'
       },
       componentCompile: {
-        command: 'cd source/public/component;make;'
+        command: 'cd source/public/component;make clean;make;'
       }
     }
   });

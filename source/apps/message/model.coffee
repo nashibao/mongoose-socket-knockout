@@ -8,6 +8,9 @@ message_schema = {
     required: true
     validate: [validate('len', 3, 10)]
     help_text: '3文字から10文字'
+  number:
+    type: Number
+    default: 0
 }
 
 exports.message_schema = message_schema

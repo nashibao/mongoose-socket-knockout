@@ -30,6 +30,7 @@
     "connect-flash": "*",
     "validator": "git://github.com/nashibao/validator.git",
     "mongoose-validator": "git://github.com/nashibao/mongoose-validator.git",
-    "sugar": "*"
+    "sugar": "*",
+    "lodash": "*"
   }
 }

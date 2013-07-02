@@ -135,10 +135,12 @@ ApplicationViewModel = (function() {
   }
 
   ApplicationViewModel.prototype.create = function() {
-    var bl;
+    var bl, rnd;
+    rnd = Math.floor(Math.random() * 10);
     bl = this.messages_model.create({
       doc: {
-        'content': this.content()
+        'content': this.content(),
+        'number': rnd
       }
     });
     if (bl) {

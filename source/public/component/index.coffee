@@ -108,7 +108,8 @@ class ApplicationViewModel
       @line_chart.update(line_d)
 
   create: ()=>
-    bl = @messages_model.create {doc: {'content': @content()}}
+    rnd = Math.floor((Math.random() * 10))
+    bl = @messages_model.create {doc: {'content': @content(), 'number': rnd}}
     if bl
       @content("")
 

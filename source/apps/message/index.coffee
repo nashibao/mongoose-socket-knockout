@@ -32,16 +32,11 @@ api = new mongoose_socket({
   collection_name: 'message'
   model: Message
   use_stream: true
-  # default_query:
-  #   default:
-  #     conditions:
-  #       number:
-  #         $gt: 2
-  # overwrite_query:
-  #   default:
-  #     conditions:
-  #       number:
-  #         $gt: 3
+  middlewares:
+    default: (data)=>
+      data.conditions = data.conditions || {}
+      data.conditions['number'] = {"$gt": 6}
+      return data
 })
 
 api.init(io)

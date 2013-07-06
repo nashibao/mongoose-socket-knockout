@@ -38,11 +38,10 @@ ApplicationViewModel = (function() {
     this.remove = __bind(this.remove, this);
     this.update = __bind(this.update, this);
     this.create = __bind(this.create, this);
+    this.view_page = __bind(this.view_page, this);
     var adapter,
       _this = this;
-    adapter = new SocketAdapter({
-      socket: socket
-    });
+    adapter = new RestAdapter();
     this.messages_model = new Model({
       name_space: 'test',
       collection_name: 'message',
@@ -133,6 +132,11 @@ ApplicationViewModel = (function() {
       return _this.line_chart.update(line_d);
     });
   }
+
+  ApplicationViewModel.prototype.view_page = function(page) {
+    this.messages.query.page = page;
+    return this.messages.update();
+  };
 
   ApplicationViewModel.prototype.create = function() {
     var bl, rnd;

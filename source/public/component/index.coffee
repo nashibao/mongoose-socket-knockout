@@ -21,10 +21,10 @@ socket = SocketAdapter.create_socket('test', io)
 
 class ApplicationViewModel
   constructor: ()->
-    adapter = new SocketAdapter({
-      socket: socket
-    })
-    # adapter = new RestAdapter()
+    # adapter = new SocketAdapter({
+    #   socket: socket
+    # })
+    adapter = new RestAdapter()
     @messages_model = new Model({
       name_space: 'test'
       collection_name: 'message'
@@ -106,6 +106,10 @@ class ApplicationViewModel
         @message_length.remove(val)
 
       @line_chart.update(line_d)
+
+  view_page: (page)=>
+    @messages.query.page = page
+    @messages.update()
 
   create: ()=>
     rnd = Math.floor((Math.random() * 10))

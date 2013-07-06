@@ -133,6 +133,9 @@ block content
                 input.span6(type="text", data-bind="value: content, valueUpdate: 'afterkeydown'")
                 button.btn(type="submit", data-bind="click: $root.update.bind($data)") update
                 a.btn.btn-danger(data-bind="click: $root.remove.bind($data)") x
+          // ko foreach: pages
+          a(href="#", data-bind="text: $data + 1, click: $root.view_page.bind($data)")
+          // /ko
         hr
         h2 2. create {}
         form.form-inline(data-bind="submit: create.bind($data), valueUpdate: 'afterkeydown'")

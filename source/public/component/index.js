@@ -41,9 +41,7 @@ ApplicationViewModel = (function() {
     this.view_page = __bind(this.view_page, this);
     var adapter,
       _this = this;
-    adapter = new SocketAdapter({
-      socket: socket
-    });
+    adapter = new RestAdapter();
     this.messages_model = new Model({
       name_space: 'test',
       collection_name: 'message',
@@ -52,6 +50,21 @@ ApplicationViewModel = (function() {
     });
     this.messages = this.messages_model.find({});
     this.count = this.messages_model.count({});
+    this.calculated = this.messages_model.aggregate({
+      array: [
+        {
+          $group: {
+            _id: 'sum',
+            count: {
+              $sum: 1
+            },
+            number_sum: {
+              $sum: '$number'
+            }
+          }
+        }
+      ]
+    });
     this.content = oo("");
     this.pie_chart = false;
     this.line_chart = false;

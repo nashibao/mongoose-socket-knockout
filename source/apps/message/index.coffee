@@ -51,5 +51,8 @@ rest_api = new rest({
   model: Message
 })
 
+# rest_api.use 'before', 'default', (req, res)=>
+  
+
 rest_api.init(app)
 

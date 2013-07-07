@@ -21,10 +21,10 @@ socket = SocketAdapter.create_socket('test', io)
 
 class ApplicationViewModel
   constructor: ()->
-    adapter = new SocketAdapter({
-      socket: socket
-    })
-    # adapter = new RestAdapter()
+    # adapter = new SocketAdapter({
+    #   socket: socket
+    # })
+    adapter = new RestAdapter()
     @messages_model = new Model({
       name_space: 'test'
       collection_name: 'message'
@@ -35,6 +35,17 @@ class ApplicationViewModel
     @messages = @messages_model.find {}
 
     @count = @messages_model.count {}
+
+    @calculated = @messages_model.aggregate {array:[
+      {
+        $group:
+          _id: 'sum'
+          count:
+            $sum: 1
+          number_sum:
+            $sum: '$number'
+      }
+    ]}
     
     @content = oo("")
 

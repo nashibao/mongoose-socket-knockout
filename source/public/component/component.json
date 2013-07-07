@@ -11,7 +11,8 @@
     "bestiejs/lodash": "*",
     "nashibao/validator": "*",
     "nashibao/mongoose-validator": "*",
-    "nashibao/simple-d3-charts": "*"
+    "nashibao/simple-d3-charts": "*",
+    "component/json": "*"
   },
   "development": {},
   "license": "MIT",

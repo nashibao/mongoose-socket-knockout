@@ -51,8 +51,10 @@ rest_api = new rest({
   model: Message
 })
 
-# rest_api.use 'before', 'default', (req, res)=>
-  
+rest_api.use (query)=>
+  query.conditions = query.conditions || {}
+  query.conditions['number'] = {"$gt": 6}
+  return query
 
 rest_api.init(app)
 

@@ -3,8 +3,6 @@ var $, ApplicationViewModel, Model, RestAdapter, SocketAdapter, app, d3_charts, 
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
   _this = this;
 
-require('knockout');
-
 oo = ko.observable;
 
 oa = ko.observableArray;

@@ -39,7 +39,9 @@ ApplicationViewModel = (function() {
     this.view_page = __bind(this.view_page, this);
     var adapter,
       _this = this;
-    adapter = new RestAdapter();
+    adapter = new SocketAdapter({
+      socket: socket
+    });
     this.messages_model = new Model({
       name_space: 'test',
       collection_name: 'message',

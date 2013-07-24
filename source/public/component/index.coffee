@@ -20,10 +20,10 @@ socket = SocketAdapter.create_socket('test', io)
 
 class ApplicationViewModel
   constructor: ()->
-    # adapter = new SocketAdapter({
-    #   socket: socket
-    # })
-    adapter = new RestAdapter()
+    adapter = new SocketAdapter({
+      socket: socket
+    })
+    # adapter = new RestAdapter()
     @messages_model = new Model({
       name_space: 'test'
       collection_name: 'message'

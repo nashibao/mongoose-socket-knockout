@@ -33,6 +33,8 @@ class ApplicationViewModel
 
     @messages = @messages_model.find {}
 
+    @msg = @messages_model.findOne {}
+
     @count = @messages_model.count {}
 
     @calculated = @messages_model.aggregate {array:[

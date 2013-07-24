@@ -120,8 +120,8 @@ block content
       .span12
         div(data-bind="with: messages_model")
           div(data-bind="with: last_err")
-            div(data-bind="foreach: _.values(errors)")
-              div.alert.alert-primary(data-bind="text: $data.type")
+            //- div(data-bind="foreach: _.values(errors)")
+            div.alert.alert-primary(data-bind="text: err")
         h2 1. find {}, update {}, remove
         div(data-bind="with: messages")
           div(data-bind="foreach: docs")

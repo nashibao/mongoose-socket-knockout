@@ -47,6 +47,7 @@ ApplicationViewModel = (function() {
       adapter: adapter
     });
     this.messages = this.messages_model.find({});
+    this.msg = this.messages_model.findOne({});
     this.count = this.messages_model.count({});
     this.calculated = this.messages_model.aggregate({
       array: [

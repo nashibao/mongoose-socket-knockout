@@ -7,7 +7,7 @@
   "dependencies": {
     "ForbesLindesay/ajax": "*",
     "component/jquery": "*",
-    "bestiejs/lodash": "*",
+    "lodash/lodash": "*",
     "nashibao/validator": "*",
     "nashibao/mongoose-validator": "*",
     "nashibao/simple-d3-charts": "*",

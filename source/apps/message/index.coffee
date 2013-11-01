@@ -13,10 +13,10 @@ mongoose = require("mongoose")
 message_schema = require('./model').message_schema
 
 MessageSchema = new mongoose.Schema(message_schema, {
-  capped:
-    size: 1024
-    max: 1000
-    autoIndexId: true
+  # capped:
+  #   size: 1024
+  #   max: 1000
+  #   autoIndexId: true
   })
 
 exports.Message = Message = mongoose.model("Message", MessageSchema)
@@ -31,11 +31,11 @@ api = new mongoose_socket({
   name_space: 'test'
   collection_name: 'message'
   model: Message
-  use_stream: true
+  # use_stream: true
   middlewares:
     default: (data)=>
       data.conditions = data.conditions || {}
-      data.conditions['number'] = {"$gt": 6}
+      # data.conditions['number'] = {"$gt": 6}
       return data
 })
 
@@ -47,13 +47,14 @@ api.init(io)
 rest = require('mongoose-socket-server/rest')
 
 rest_api = new rest({
+  name_space: 'test'
   collection_name: 'message'
   model: Message
 })
 
 rest_api.use (query)=>
   query.conditions = query.conditions || {}
-  query.conditions['number'] = {"$gt": 6}
+  # query.conditions['number'] = {"$gt": 6}
   return query
 
 rest_api.init(app)

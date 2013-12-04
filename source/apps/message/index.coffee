@@ -1,14 +1,16 @@
+# imports
 express = require 'express'
 app = module.exports = express()
 
+# view
 app.set "views", __dirname
 app.set "view engine", "jade"
 
+# routing
 app.get "/", (req, res)=>
   res.render 'test'
 
 # model
-
 mongoose = require("mongoose")
 message_schema = require('./model').message_schema
 
@@ -21,8 +23,10 @@ MessageSchema = new mongoose.Schema(message_schema, {
 
 exports.Message = Message = mongoose.model("Message", MessageSchema)
 
-# api
 
+# socket and rest api -------------------
+
+# 1. socket api
 mongoose_socket = require('mongoose-socket-server')
 
 io = module.parent.exports.io
@@ -42,8 +46,7 @@ api = new mongoose_socket({
 api.init(io)
 
 
-# rest api
-
+# 2. rest api
 rest = require('mongoose-socket-server/rest')
 
 rest_api = new rest({

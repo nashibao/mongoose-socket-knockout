@@ -18,7 +18,7 @@ mongoose -> html binding with socket.io and knockout.js
 
 ## 2. how to run the test
 
-- 2.1 require mongodb
+- 2.1 require mongodb, clone this repo and prepare submodules.
 - 2.2 install express and component globally
 
 ```bash

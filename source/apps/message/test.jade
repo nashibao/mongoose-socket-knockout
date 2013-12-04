@@ -12,101 +12,6 @@ block header
   script
     var app = require('app');
     _ = require('lodash');
-  style
-    #pie-chart {
-      background-color: white;
-      /*border: 1px solid gray;*/
-      font: 10px sans-serif;
-      height: 300px;
-      text-shadow: none;
-      width: 300px;
-    }
-    #pie-chart .total{
-      font-size: 18px;
-      font-weight: bold;
-    }
-    #pie-chart .units{
-      fill: gray;
-      font-size: 12px;
-    }
-    #pie-chart .label{
-      fill: #CCC;
-      font-size: 12px;
-      font-weight: bold;
-    }
-    #pie-chart .value{
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    #line-chart {
-      background-color: white;
-      /*border: 1px solid gray;*/
-      font: 10px sans-serif;
-      height: 300px;
-      text-shadow: none;
-      width: 600px;
-    }
-    #line-chart path {
-      stroke: steelblue;
-      stroke-width: 3;
-      fill: none;
-    }
-
-    #line-chart .axis {
-      shape-rendering: crispEdges;
-    }
-
-    #line-chart .x.axis line {
-      stroke: #eee;
-    }
-
-    #line-chart .x.axis .minor {
-      stroke-opacity: .5;
-    }
-
-    #line-chart .x.axis path {
-      display: none;
-    }
-
-    #line-chart .y.axis line, .y.axis path {
-      fill: none;
-      stroke: none;
-    }
-
-    #line-chart path.domain {
-      stroke: none;
-    }
-
-    #line-chart g.tick {
-      fill: lightgray;
-    }
-
-    #line-chart rect.line {
-      fill: #fff;
-      stroke: steelblue;
-      stroke-width: 3;
-    }
-
-    #line-chart circle.line {
-      fill: #fff;
-      stroke: steelblue;
-      stroke-width: 3;
-    }
-
-    #line-chart circle.line2 {
-      fill: #fff;
-    }
-
-    #line-chart rect.val {
-      fill: white;
-      opacity: 0.8;
-    }
-    #line-chart text.val {
-      fill: gray;
-      font-size: 12px;
-    }
-
 block content
   .container-narrow
     .masthead
@@ -150,15 +55,4 @@ block content
         h2 3. count {}
         div(data-bind="with: count")
           div(data-bind="text: val")
-        hr
-        h2 4. charts 
-        h4 Pie Chart
-        div#pie-chart 
-        h4 Bar Chart
-        div#bar-chart
-          div(data-bind="foreach: message_length")
-            .progress.animated.fadeIn
-              .bar(data-bind="style: {width: content()*10 + '%'}")
-        h4 Line Chart
-        div#line-chart
 

@@ -1,4 +1,4 @@
-# nashibao/mongoose-socket
+# mongoose-socket
 
 mongoose -> html binding with socket.io and knockout.js
 
@@ -71,5 +71,8 @@ https://github.com/nashibao/mongoose-socket/blob/master/source/public/component/
 https://github.com/nashibao/mongoose-socket/blob/master/source/apps/message/index.coffee
 
 
+## License
+
+The MIT License
 
 

@@ -26,6 +26,7 @@ ApplicationViewModel = (function() {
     this.remove = __bind(this.remove, this);
     this.update = __bind(this.update, this);
     this.create = __bind(this.create, this);
+    this.load_more = __bind(this.load_more, this);
     this.view_page = __bind(this.view_page, this);
     var adapter;
     adapter = new SocketAdapter({
@@ -59,8 +60,13 @@ ApplicationViewModel = (function() {
   }
 
   ApplicationViewModel.prototype.view_page = function(page) {
+    this.messages.query.more = false;
     this.messages.query.page = page;
     return this.messages.update();
+  };
+
+  ApplicationViewModel.prototype.load_more = function() {
+    return this.messages.more();
   };
 
   ApplicationViewModel.prototype.create = function() {

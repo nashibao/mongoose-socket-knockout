@@ -62,8 +62,12 @@ class ApplicationViewModel
 
   # paging
   view_page: (page)=>
+    @messages.query.more = false
     @messages.query.page = page
     @messages.update()
+  # paging
+  load_more: ()=>
+    @messages.more()
 
   # create
   create: ()=>

@@ -40,6 +40,8 @@ block content
           // ko foreach: pages
           a(href="#", data-bind="text: $data + 1, click: $root.view_page.bind($data)")
           // /ko
+          a(href="#", data-bind="click: $root.load_more.bind($data), visible: has_next") more
+          div(data-bind="text: 'status: ' + status()")
         hr
         h2 2. create {}
         form.form-inline(data-bind="submit: create.bind($data), valueUpdate: 'afterkeydown'")

@@ -17,10 +17,10 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": [
-    "mongoose-socket-client/adapter/socket.js",
-    "mongoose-socket-client/adapter/rest.js",
-    "mongoose-socket-client/adapter/index.js",
-    "mongoose-socket-client/index.js",
+    "mongoose-knockout/adapter/socket.js",
+    "mongoose-knockout/adapter/rest.js",
+    "mongoose-knockout/adapter/index.js",
+    "mongoose-knockout/index.js",
     "message/model.js",
     "index.js"
   ]

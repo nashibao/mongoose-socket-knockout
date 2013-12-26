@@ -1,7 +1,7 @@
 
 build: components index.js
 	@echo build..
-	coffee --compile --bare mongoose-socket-client/index.coffee
+	coffee --compile --bare mongoose-knockout/index.coffee
 	coffee --compile --bare index.coffee
 	@component build --dev
 

@@ -1,4 +1,4 @@
-# mongoose-socket
+# mongoose-socket-knockout
 
 mongoose -> html binding with socket.io and knockout.js
 
@@ -6,11 +6,15 @@ mongoose -> html binding with socket.io and knockout.js
 
 ### client side
 
+mongoose-knockout
+
 - knockout.js
 - component/component
 
 
 ### server side
+
+mongoose-socket
 
 - node.js
 - express.js
@@ -63,12 +67,12 @@ if you would like to use this module, please view these script files.
 
 ### client side
 
-https://github.com/nashibao/mongoose-socket/blob/master/source/public/component/index.coffee
+https://github.com/nashibao/mongoose-socket-knockout/blob/master/source/public/component/index.coffee
 
 
 ### server side
 
-https://github.com/nashibao/mongoose-socket/blob/master/source/apps/message/index.coffee
+https://github.com/nashibao/mongoose-socket-knockout/blob/master/source/apps/message/index.coffee
 
 
 ## License

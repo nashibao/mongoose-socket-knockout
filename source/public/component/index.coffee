@@ -3,13 +3,13 @@
 oo = ko.observable
 oa = ko.observableArray
 $ = require('jquery')
-mgsc = require('./mongoose-socket-client')
+mongoose_knockout = require('./mongoose-knockout')
 
 
 # create adapters and socket
-Model = mgsc.Model
-SocketAdapter = mgsc.adapter.socket
-RestAdapter = mgsc.adapter.rest
+Model = mongoose_knockout.Model
+SocketAdapter = mongoose_knockout.adapter.socket
+RestAdapter = mongoose_knockout.adapter.rest
 socket = SocketAdapter.create_socket('test', io)
 
 # schema
@@ -67,7 +67,7 @@ class ApplicationViewModel
     @messages.update()
   # paging
   load_more: ()=>
-    @messages.more()
+    @messages.tail()
 
   # create
   create: ()=>

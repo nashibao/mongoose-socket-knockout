@@ -22,9 +22,9 @@ block content
     .row-fluid
       .span12
         div(data-bind="with: messages_model")
-          div(data-bind="with: last_err")
-            //- div(data-bind="foreach: _.values(errors)")
-            div.alert.alert-primary(data-bind="text: err")
+          div(data-bind="if: last_err")
+            //-   div(data-bind="foreach: _.values(errors())")
+            div.alert.alert-primary(data-bind="text: last_err")
         h2 1. find {}, update {}, remove
         div(data-bind="with: messages")
           div(data-bind="foreach: docs")

@@ -53,6 +53,7 @@ api.init(io)
 
 api.use (method, data, socket)=>
   console.log method, ' session: ', socket.handshake.session
+  return true
 
 
 # 2. rest api

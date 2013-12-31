@@ -27,27 +27,36 @@ exports.Message = Message = mongoose.model("Message", MessageSchema)
 # socket and rest api -------------------
 
 # 1. socket api
-mongoose_socket = require('mongoose-socket-server')
+mongoose_socket = require('../mongoose-socket/index')
 
 io = module.parent.exports.io
+
+
+# mock authorization
+io.configure ()->
+  io.set 'authorization', (handshake, next)->
+
+    handshake.session = {
+      test: "test"
+    }
+    console.log 'socket.io authorization successed'
+    return next null, true
 
 api = new mongoose_socket({
   name_space: 'test'
   collection_name: 'message'
   model: Message
   # use_stream: true
-  middlewares:
-    default: (data)=>
-      data.conditions = data.conditions || {}
-      # data.conditions['number'] = {"$gt": 6}
-      return data
 })
 
 api.init(io)
 
+api.use (method, data, socket)=>
+  console.log method, ' session: ', socket.handshake.session
+
 
 # 2. rest api
-rest = require('mongoose-socket-server/rest')
+rest = require('../mongoose-socket/rest')
 
 rest_api = new rest({
   name_space: 'test'

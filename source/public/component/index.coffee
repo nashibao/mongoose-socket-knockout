@@ -12,6 +12,8 @@ SocketAdapter = mongoose_knockout.adapter.socket
 RestAdapter = mongoose_knockout.adapter.rest
 socket = SocketAdapter.create_socket('test', io)
 
+Storage = require('./mongoose-knockout/storage')
+
 # schema
 message_schema = require('./message/model').message_schema
 
@@ -27,7 +29,7 @@ class ApplicationViewModel
     #   name_space: 'test'
     # })
     
-
+    
     # model
     @messages_model = new Model({
       name_space: 'test'
@@ -59,6 +61,13 @@ class ApplicationViewModel
     
     # for new item
     @content = oo("")
+    
+    # storage
+    @storage = new Storage({})
+    @storage.get (session)=>
+      console.log 'storage get', session
+      @storage.update (session)=>
+        session.hello = "world"
 
   # paging
   view_page: (page)=>

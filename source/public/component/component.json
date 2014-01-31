@@ -7,7 +7,7 @@
   "dependencies": {
     "ForbesLindesay/ajax": "*",
     "component/jquery": "*",
-    "lodash/lodash": "*",
+    "lodash/lodash": "2.2.0",
     "nashibao/validator": "*",
     "nashibao/mongoose-validator": "*",
     "nashibao/simple-d3-charts": "*",
@@ -20,6 +20,7 @@
     "mongoose-knockout/adapter/socket.js",
     "mongoose-knockout/adapter/rest.js",
     "mongoose-knockout/adapter/index.js",
+    "mongoose-knockout/storage.js",
     "mongoose-knockout/index.js",
     "message/model.js",
     "index.js"

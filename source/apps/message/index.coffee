@@ -40,6 +40,11 @@ io.configure ()->
       test: "test"
     }
     console.log 'socket.io authorization successed'
+
+    handshake._session = {
+      test: "test"
+    }
+
     return next null, true
 
 api = new mongoose_socket({
@@ -51,6 +56,7 @@ api = new mongoose_socket({
 
 api.init(io)
 
+# auth test
 api.use (method, data, socket)=>
   console.log method, ' session: ', socket.handshake.session
   return true
@@ -72,3 +78,10 @@ rest_api.use (query)=>
 
 rest_api.init(app)
 
+# 3. storage api
+
+Storage = require('../mongoose-socket/storage')
+
+storage = new Storage({})
+
+storage.init(io)

@@ -1,5 +1,5 @@
 
-build: components index.js
+build: components index.coffee
 	@echo build..
 	coffee --compile --bare mongoose-knockout/index.coffee
 	coffee --compile --bare index.coffee
@@ -9,6 +9,6 @@ components: component.json
 	@component install --dev
 
 clean:
-	rm -fr build components template.js
+	rm -fr build components index.js
 
 .PHONY: clean

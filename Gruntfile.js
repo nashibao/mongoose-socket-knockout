@@ -70,7 +70,7 @@ module.exports = function(grunt) {
         command: 'cd source/public/component/mongoose-knockout;make;make install;'
       },
       componentCompile: {
-        command: 'cd source/public/component;make clean;make;'
+        command: 'cd source/public/component;make;'
       }
     }
   });

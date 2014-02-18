@@ -22,6 +22,7 @@ module.exports = function(grunt) {
           files: {
             'source/apps/mongoose-socket/index.js': 'source/apps/mongoose-socket/index.coffee',
             'source/apps/mongoose-socket/rest.js': 'source/apps/mongoose-socket/rest.coffee',
+            'source/apps/mongoose-socket/storage.js': 'source/apps/mongoose-socket/storage.coffee',
             'source/public/component/message/model.js': 'source/apps/message/model.coffee'
           }
         }

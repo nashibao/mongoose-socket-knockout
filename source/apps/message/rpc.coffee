@@ -10,18 +10,17 @@ io = global.io
 
 # # mock authorization
 # io.configure ()->
-# io.set 'authorization', (handshake, next)->
+io.set 'authorization', (request, next)->
 
-#   handshake.session = {
-#     test: "test"
-#   }
-#   console.log 'socket.io authorization successed'
+  request.session = {
+    test: "test"
+  }
+  console.log 'socket.io authorization successed'
 
-#   handshake._session = {
-#     test: "test"
-#   }
-
-#   return next null, true
+  request._session = {
+    test: "test"
+  }
+  return next null, true
 
 api = new mongoose_socket({
   name_space: 'test'
@@ -32,10 +31,10 @@ api = new mongoose_socket({
 
 api.init(io)
 
-# # auth test
-# api.use (method, data, socket)=>
-#   console.log method, ' session: ', socket.handshake.session
-#   return true
+# auth test
+api.use (method, data, socket)=>
+  console.log method, ' session: ', socket.request.session
+  return true
 
 
 # # 2. rest api
@@ -56,8 +55,12 @@ api.init(io)
 
 # # 3. storage api
 
-# Storage = require('../mongoose-socket/storage')
+Storage = require('../mongoose-socket/storage')
 
-# storage = new Storage({})
+storage = new Storage({
+  set: (req, res, next) ->
+    console.log 'storage, set'
+    next()
+  })
 
-# storage.init(io)
+storage.init(io)

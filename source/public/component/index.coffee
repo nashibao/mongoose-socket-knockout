@@ -75,10 +75,10 @@ class ApplicationViewModel
 
     # storage
     @storage = new Storage({host: "http://localhost:3001"})
-    # @storage.get (session)=>
-    #   console.log 'storage get', session
-    #   @storage.update (session)=>
-    #     session.hello = "world"
+    @storage.get (session)=>
+      console.log 'storage get', session
+      @storage.update (session)=>
+        session.hello = "world"
 
   # paging
   view_page: (page)=>

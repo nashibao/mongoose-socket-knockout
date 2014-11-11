@@ -58,6 +58,14 @@ ApplicationViewModel = (function() {
     this.storage = new Storage({
       host: "http://localhost:3001"
     });
+    this.storage.get((function(_this) {
+      return function(session) {
+        console.log('storage get', session);
+        return _this.storage.update(function(session) {
+          return session.hello = "world";
+        });
+      };
+    })(this));
   }
 
   ApplicationViewModel.prototype.view_page = function(page) {

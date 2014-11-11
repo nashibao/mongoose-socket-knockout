@@ -73,8 +73,8 @@ class ApplicationViewModel
     # for new item
     @content = oo("")
 
-    # # storage
-    # @storage = new Storage({})
+    # storage
+    @storage = new Storage({host: "http://localhost:3001"})
     # @storage.get (session)=>
     #   console.log 'storage get', session
     #   @storage.update (session)=>

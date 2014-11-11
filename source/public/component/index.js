@@ -55,6 +55,9 @@ ApplicationViewModel = (function() {
       ]
     });
     this.content = oo("");
+    this.storage = new Storage({
+      host: "http://localhost:3001"
+    });
   }
 
   ApplicationViewModel.prototype.view_page = function(page) {

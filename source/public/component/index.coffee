@@ -1,4 +1,14 @@
 
+# console.log 'hello socket'
+
+# socket = io.connect 'http://localhost:3001'
+
+# console.log 'connected?'
+
+# socket.on 'news', (data) ->
+#   console.log(data)
+#   socket.emit 'my other event', { my: 'data' }
+
 # imports
 oo = ko.observable
 oa = ko.observableArray
@@ -9,15 +19,16 @@ mongoose_knockout = require('./mongoose-knockout')
 # create adapters and socket
 Model = mongoose_knockout.Model
 SocketAdapter = mongoose_knockout.adapter.socket
-RestAdapter = mongoose_knockout.adapter.rest
+SocketAdapter.host("http://localhost:3001")
+# RestAdapter = mongoose_knockout.adapter.rest
 socket = SocketAdapter.create_socket('test', io)
 
 Storage = require('./mongoose-knockout/storage')
 
-# schema
-message_schema = require('./message/model').message_schema
+# # schema
+# message_schema = require('./message/model').message_schema
 
-# knockout view model
+# # knockout view model
 class ApplicationViewModel
   constructor: ()->
 
@@ -28,13 +39,13 @@ class ApplicationViewModel
     # adapter = new RestAdapter({
     #   name_space: 'test'
     # })
-    
-    
+
+
     # model
     @messages_model = new Model({
       name_space: 'test'
       collection_name: 'message'
-      model: message_schema
+      # model: message_schema
       adapter: adapter
     })
 
@@ -58,16 +69,16 @@ class ApplicationViewModel
             $sum: '$number'
       }
     ]}
-    
+
     # for new item
     @content = oo("")
-    
-    # storage
-    @storage = new Storage({})
-    @storage.get (session)=>
-      console.log 'storage get', session
-      @storage.update (session)=>
-        session.hello = "world"
+
+    # # storage
+    # @storage = new Storage({})
+    # @storage.get (session)=>
+    #   console.log 'storage get', session
+    #   @storage.update (session)=>
+    #     session.hello = "world"
 
   # paging
   view_page: (page)=>

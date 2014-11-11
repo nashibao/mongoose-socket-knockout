@@ -11,7 +11,8 @@
     "nashibao/validator": "*",
     "nashibao/mongoose-validator": "*",
     "nashibao/simple-d3-charts": "*",
-    "component/json": "*"
+    "component/json": "*",
+    "component/emitter": "*"
   },
   "development": {},
   "license": "MIT",

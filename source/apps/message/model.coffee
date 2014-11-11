@@ -13,4 +13,13 @@ message_schema = {
     default: 0
 }
 
-exports.message_schema = message_schema
+mongoose = require("mongoose")
+
+MessageSchema = new mongoose.Schema(message_schema, {
+  # capped:
+  #   size: 1024
+  #   max: 1000
+  #   autoIndexId: true
+  })
+
+exports.Message = Message = mongoose.model("Message", MessageSchema)

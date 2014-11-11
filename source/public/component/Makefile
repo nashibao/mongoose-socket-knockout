@@ -1,5 +1,5 @@
 
-build: components index.coffee
+build: components index.coffee mongoose-knockout/index.js
 	@echo build..
 	coffee --compile --bare mongoose-knockout/index.coffee
 	coffee --compile --bare index.coffee

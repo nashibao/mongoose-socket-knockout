@@ -1,19 +1,19 @@
-extends ../../views/layout
+extends ./layout
 block header
   meta(name="viewport", content="width=device-width, initial-scale=1.0")
   link(rel="stylesheet", href="/vendor/bootstrap/docs/assets/css/bootstrap-responsive.css")
   link(rel="stylesheet", href="/vendor/bootstrap/docs/assets/css/bootstrap.css")
   <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
   script(src="//ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.debug.js")
-  script(src="/socket.io/socket.io.js")
+  //- <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+  script(src="http://localhost:3001/socket.io/socket.io.js")
   script(src="/component/build/build.js")
   script.
     var app = require('app');
-    _ = require('lodash');
 block content
   .container-narrow
     .masthead
-      h1.muted 
+      h1.muted
         a(href="http://github.com/nashibao/mongoose-socket-knockout", target="_blank") nashibao/mongoose-socket-knockout
     .jumbotron
       p.lead
@@ -21,7 +21,7 @@ block content
     hr
     .row-fluid
       .span12
-        div(data-bind="with: messages_model")
+        //- div(data-bind="with: messages_model")
           div(data-bind="if: last_err")
             //-   div(data-bind="foreach: _.values(errors())")
             div.alert.alert-primary(data-bind="text: last_err")
@@ -31,7 +31,7 @@ block content
             div
               div
                 span.muted(data-bind="text: _id")
-                span  
+                span
                 span.muted(data-bind="text: number")
               form.form-inline(data-bind="submit: $root.update.bind($data)")
                 input.span6(type="text", data-bind="value: content, valueUpdate: 'afterkeydown'")
@@ -47,8 +47,8 @@ block content
         form.form-inline(data-bind="submit: create.bind($data), valueUpdate: 'afterkeydown'")
           input.span8(type="text", data-bind="value: content")
           button.btn(type="submit") create
-        div.muted(data-bind="text: messages_model.model.content.help_text")
-        div(data-bind="with: messages_model")
+        //- div.muted(data-bind="text: messages_model.model.content.help_text")
+        //- div(data-bind="with: messages_model")
           div(data-bind="visible: last_validate_err")
             div.alert.alert-primary(data-bind="text: last_validate_err")
         hr

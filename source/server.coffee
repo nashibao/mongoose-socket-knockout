@@ -1,79 +1,125 @@
-
-app_name = "mongoosesocket"
-
-express = require "express"
-
+express = require("express")
+path = require("path")
+favicon = require("serve-favicon")
+logger = require("morgan")
+cookieParser = require("cookie-parser")
+bodyParser = require("body-parser")
+flash = require('connect-flash')
+session = require('express-session')
+RedisStore = require('connect-redis')(session)
 app = express()
 
-mongoose = require "mongoose"
+# 設定
+require('./config')()
 
-flash = require('connect-flash')
-RedisStore = require('connect-redis')(express)
+# MongoDB設定
+require('./mongodb')
 
-local_settings = require('./local_config').settings
+# ポート
+app.set "port", CONFIG.SERVER.PORT
 
-redisOptions = {
-    prefix: app_name + ':',
-    host: local_settings.LOCAL_REDIS_HOST,
-    port: local_settings.LOCAL_REDIS_PORT,
-    pass: local_settings.LOCAL_REDIS_PASSWORD
-}
+# view engine setup
+app.set "views", path.join(__dirname, "/views")
+app.set "view engine", "jade"
+app.set "cookieSessionKey", "Qr22vnjVmDjKJD"
+app.set "secretKey", "HzmZpXUU6UXt3e"
 
-mongoOptions = {}
-mongoOptions['url'] = local_settings.LOCAL_MONGO_URL
+# uncomment after placing your favicon in /public
+#app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use logger("dev")
+app.use bodyParser.json()
+app.use bodyParser.urlencoded(extended: false)
+app.use cookieParser()
+app.set 'sessionStore', new RedisStore({
+      host: CONFIG.REDIS.HOST
+      port: CONFIG.REDIS.PORT
+      pass: CONFIG.REDIS.PASSWORD
+    })
 
-app.configure ->
-  app.set "port", process.env.PORT or 8060
-  app.set "views", __dirname + "/views"
-  app.set "view engine", "jade"
-  app.use express.favicon()
-  app.use express.logger("dev")
-  app.use express.bodyParser()
-  app.use express.methodOverride()
-  app.use express.cookieParser()
+sessionMiddleware = session({
+  store: app.get 'sessionStore'
+  key: app.get 'cookieSessionKey'
+  secret: "HzmZpXUU6UXt3e"
+  resave: true
+  saveUninitialized: true
+  cookie:
+    maxAge: false
+})
 
-  app.use express.session({
-    secret: 'secret session key',
-    store: new RedisStore(redisOptions),
-    cookie: {
-      maxAge: false
-    }
-  })
+app.use sessionMiddleware
 
-  app.use flash()
+app.use express.static(path.join(__dirname, "/public"))
 
-  app.use (req, res, next) ->
-    res.locals.originalUrl = req.originalUrl
-    res.locals.session = req.session
-    next()
+# flash
+app.use flash()
 
-  app.use app.router
+app.use (req, res, next) ->
+  res.locals.session = req.session
+  res.locals.message = req.flash()
+  next()
 
-  app.use express.static(require("path").join(__dirname, "./public"))
+# モジュール
+app.use "/", require("./apps/message")
 
-
-model_init = (url, db_name)->
-  mongoose.connect url + "/" + db_name
-
-app.configure "development", ->
-  model_init mongoOptions.url, app_name + "_dev"
-  app.use express.errorHandler(
-    dumpExceptions: true
-    showStack: true
-  )
-
-if module.parent
+# catch 404 and forward to error handler
+app.use (req, res, next) ->
+  err = new Error("Not Found")
+  err.status = 404
+  next err
   return
 
-module.exports = app
+# error handlers
 
-server = require("http").createServer(app)
+# development error handler
+# will print stacktrace
+if CONFIG.DEVELOPMENT
+  app.use (err, req, res, next) ->
+    res.status err.status or 500
+    res.render "error",
+      message: err.message
+      error: err
 
-server.listen app.get("port"), ->
-  console.log "Express server listening on port " + app.get("port")
+    return
 
-io = require('socket.io').listen(server)
+# production error handler
+# no stacktraces leaked to user
+app.use (err, req, res, next) ->
+  res.status err.status or 500
+  res.render "error",
+    message: err.message
+    error: {}
 
-module.exports.io = io
+  return
 
-app.use require('message')
+grunt = require('grunt')
+grunt.tasks(['watch'])
+
+# # socket.io
+Server = require("http").Server
+ioserver = Server(app)
+io = require("socket.io")(ioserver)
+
+# http://stackoverflow.com/questions/25532692/how-to-share-sessions-with-socket-io-1-x-and-express-4-x
+io.use (socket, next) ->
+  sessionMiddleware(socket.request, socket.request.res, next)
+
+# server.listen(3001)
+global.io = io
+
+ioserver.listen(3001)
+
+# www server
+debug = require("debug")("ShareProb")
+server = app.listen(app.get("port"), ->
+
+  console.log "Express server listening on port " + server.address().port
+  return
+)
+
+require('./apps/message/rpc')
+
+# io.on 'connection', (socket) ->
+#   console.log 'connected', socket
+#   socket.emit 'news', { hello: 'world' }
+#   socket.on 'my other event', (data) ->
+#     console.log(data)

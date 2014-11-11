@@ -39,7 +39,7 @@ module.exports = function(grunt) {
       main: {
         files: [
           {expand: true, cwd: 'source/views/', src: ['**'], dest: 'build/views/'},
-          {expand: true, cwd: 'source/public/', src: ['**/*.js'], dest: 'build/public/'},
+          {expand: true, cwd: 'source/public/component/build/', src: ['**/*.js'], dest: 'build/public/component/build/'},
           {expand: true, cwd: 'source/apps/', src: ['**/*.jade'], dest: 'build/apps/'},
           {expand: true, cwd: 'source/apps/', src: ['**/*.js'], dest: 'build/apps/'}
         ]
@@ -83,7 +83,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-shell');
-  grunt.loadNpmTasks('grunt-notify');
 
   // Default task(s).
   grunt.registerTask('default', ['coffee', 'shell', 'compass', 'copy', 'concat', 'uglify']);
